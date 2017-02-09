@@ -2,6 +2,7 @@ package com.yling.common.core;
 
 import org.nutz.mvc.annotation.IocBy;
 import org.nutz.mvc.annotation.Modules;
+import org.nutz.mvc.annotation.SetupBy;
 import org.nutz.mvc.ioc.provider.ComboIocProvider;
 
 /**
@@ -16,7 +17,7 @@ import org.nutz.mvc.ioc.provider.ComboIocProvider;
         "*anno", "com.yling",
         "*tx",
         "*async"})
-
+@SetupBy(Setup.class)
 public class Module
 {
 }

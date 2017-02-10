@@ -1,12 +1,11 @@
 package com.yling.modules.models;
 
 import com.yling.common.base.Model;
-import org.nutz.dao.entity.annotation.Column;
-import org.nutz.dao.entity.annotation.Id;
-import org.nutz.dao.entity.annotation.Table;
+import org.nutz.dao.entity.annotation.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * 文件名：
@@ -30,9 +29,13 @@ public class Role extends Model implements Serializable
     @Column("op_by")
     private Long opBy;
     @Column("create_time")
+    @Prev(els = @EL("$me.now()"))
     private Timestamp createTime;
     @Column("update_time")
+    @Prev(els = @EL("$me.now()"))
     private Timestamp updateTime;
+    @ManyMany(relation = "pm_role_menu",from = "role_id",to = "menu_id")
+    private List<Menu> menus;
 
     public Long getId()
     {
@@ -102,5 +105,15 @@ public class Role extends Model implements Serializable
     public void setUpdateTime(Timestamp updateTime)
     {
         this.updateTime = updateTime;
+    }
+
+    public List<Menu> getMenus()
+    {
+        return menus;
+    }
+
+    public void setMenus(List<Menu> menus)
+    {
+        this.menus = menus;
     }
 }

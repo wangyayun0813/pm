@@ -1,9 +1,11 @@
 package com.yling.common.base;
 
+import com.yling.common.util.DateUtil;
 import org.nutz.json.Json;
 import org.nutz.json.JsonFormat;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 /**
  * 文件名：
@@ -18,5 +20,10 @@ public class Model implements Serializable
 
     public String toString() {
         return String.format("/*%s*/%s", super.toString(), Json.toJson(this, JsonFormat.compact()));
+    }
+
+    public Timestamp now()
+    {
+        return DateUtil.timestamp();
     }
 }

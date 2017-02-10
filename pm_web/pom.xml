@@ -27,6 +27,13 @@
             <version>${nutz.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.nutz</groupId>
+            <artifactId>nutz-plugins-mock</artifactId>
+            <version>${nutz.version}</version>
+            <scope>test</scope>
+        </dependency>
+
         <!-- mysql驱动 -->
         <dependency>
             <groupId>mysql</groupId>
@@ -105,6 +112,12 @@
             <version>1.7.21</version>
         </dependency>
 
+        <!--commons-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
 
     </dependencies>
 

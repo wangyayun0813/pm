@@ -4,6 +4,7 @@ import com.yling.common.util.DateUtil;
 import com.yling.modules.models.BillTag;
 import com.yling.modules.models.Menu;
 import com.yling.modules.models.Role;
+import com.yling.modules.service.MenuService;
 import com.yling.runner.NutzTestRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,6 +34,8 @@ public class UserDaoTest
     protected Ioc ioc;
     @Inject
     protected Dao dao;
+    @Inject
+    protected MenuService menuService;
 
     @Test
     public void doSave2()
@@ -60,18 +63,21 @@ public class UserDaoTest
         m1.setName("m1");
         m1.setType((short) 1);
         m1.setCreator((long) 1);
+        m1.setPermission("xxx1");
         m1.setCreateTime(Timestamp.valueOf("2016-02-14 11:11:11"));
 
         Menu m2 = new Menu();
         m2.setName("m2");
         m2.setType((short) 1);
         m2.setCreator((long) 1);
+        m2.setPermission("xxx2");
         m2.setCreateTime(Timestamp.valueOf("2016-02-14 11:11:11"));
 
         Menu m3 = new Menu();
         m3.setName("m3");
         m3.setType((short) 1);
         m3.setCreator((long) 1);
+        m3.setPermission("xxx3");
         m3.setCreateTime(Timestamp.valueOf("2016-02-14 11:11:11"));
 
         Role role = new Role();
@@ -102,5 +108,13 @@ public class UserDaoTest
     public void testCreateTables()
     {
         Daos.createTablesInPackage(dao, "com.yling.modules.models", false);
+    }
+
+    @Test
+    public void testQuery()
+    {
+        // Page page = service.listPage(0, 0);
+        // System.out.println(page);
+        System.out.println(menuService.listPage(3,10,Cnd.where("type","=",1)));
     }
 }

@@ -1,6 +1,6 @@
 package com.yling.modules.models;
 
-import com.yling.common.base.Model;
+import com.yling.common.base.BaseModel;
 import org.nutz.dao.entity.annotation.*;
 
 import java.io.Serializable;
@@ -18,7 +18,7 @@ import java.sql.Timestamp;
         @Index(name = "USER_ID", fields = "userId"),
         @Index(name = "UPDATE_TIME", fields = "updateTime"),
 })
-public class DeptUser extends Model implements Serializable
+public class DeptUser extends BaseModel implements Serializable
 {
     private static final long serialVersionUID = 3663404169338463270L;
     @Id

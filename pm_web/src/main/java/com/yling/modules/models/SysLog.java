@@ -1,6 +1,6 @@
 package com.yling.modules.models;
 
-import com.yling.common.base.Model;
+import com.yling.common.base.BaseModel;
 import org.nutz.dao.entity.annotation.*;
 
 import java.io.Serializable;
@@ -14,7 +14,7 @@ import java.sql.Timestamp;
  * 修改人：
  */
 @Table("pm_sys_log")
-public class SysLog extends Model implements Serializable
+public class SysLog extends BaseModel implements Serializable
 {
     private static final long serialVersionUID = -2807184700002187277L;
     @Id

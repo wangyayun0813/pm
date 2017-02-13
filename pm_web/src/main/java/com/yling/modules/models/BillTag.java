@@ -1,6 +1,6 @@
 package com.yling.modules.models;
 
-import com.yling.common.base.Model;
+import com.yling.common.base.BaseModel;
 import org.nutz.dao.entity.annotation.*;
 
 import java.io.Serializable;
@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 @Table("pm_tag")
 @TableIndexes({@Index(name = "NAME",fields = {"name"}),
                @Index(name = "COLOR",fields = {"color"})})
-public class BillTag extends Model implements Serializable
+public class BillTag extends BaseModel implements Serializable
 {
     private static final long serialVersionUID = 8330418045420801112L;
     @Id

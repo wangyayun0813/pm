@@ -1,6 +1,6 @@
 package com.yling.modules.models;
 
-import com.yling.common.base.Model;
+import com.yling.common.base.BaseModel;
 import org.nutz.dao.entity.annotation.*;
 
 import java.io.Serializable;
@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 @Table("pm_dept")
 @TableIndexes({@Index(name = "PID",fields = {"pid"},unique = false),
         @Index(name = "UPDATE_TIME",fields = {"updateTime"},unique = false)})
-public class Dept extends Model implements Serializable
+public class Dept extends BaseModel implements Serializable
 {
     private static final long serialVersionUID = 8157933380164756631L;
     @Id

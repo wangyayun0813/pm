@@ -1,6 +1,6 @@
 package com.yling.modules.models;
 
-import com.yling.common.base.Model;
+import com.yling.common.base.BaseModel;
 import org.nutz.dao.entity.annotation.*;
 
 import java.io.Serializable;
@@ -15,7 +15,7 @@ import java.util.List;
  * 修改人：
  */
 @Table("pm_role")
-public class Role extends Model implements Serializable
+public class Role extends BaseModel implements Serializable
 {
     private static final long serialVersionUID = 7480962304794481629L;
     @Id

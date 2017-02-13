@@ -13,7 +13,8 @@ import org.nutz.mvc.ioc.provider.ComboIocProvider;
  * 修改人：
  */
 @Modules(scanPackage = true, packages = "com.yling.modules")
-@IocBy(type=ComboIocProvider.class, args={"*js", "conf/ioc/",
+@IocBy(type=ComboIocProvider.class, args={
+        "*js", "conf/ioc/",
         "*anno", "com.yling",
         "*tx",
         "*async"})

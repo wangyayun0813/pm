@@ -1,6 +1,6 @@
 package com.yling.modules.models;
 
-import com.yling.common.base.Model;
+import com.yling.common.base.BaseModel;
 import org.nutz.dao.entity.annotation.*;
 
 import java.io.Serializable;
@@ -19,7 +19,7 @@ import java.util.List;
                @Index(name = "UPDATE_TIME",fields = {"updateTime"},unique = false),
                @Index(name = "PID_TYPE",fields = {"pid","type"},unique = false),
                @Index(name = "permission",fields = "permission")})
-public class Menu extends Model implements Serializable
+public class Menu extends BaseModel implements Serializable
 {
     private static final long serialVersionUID = -292696415871052369L;
     @Id

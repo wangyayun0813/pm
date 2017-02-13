@@ -14,7 +14,7 @@ import java.sql.Timestamp;
  * 创建时间： 2017/2/9.
  * 修改人：
  */
-public class Model implements Serializable
+public class BaseModel implements Serializable
 {
     private static final long serialVersionUID = -2056424678433135268L;
 

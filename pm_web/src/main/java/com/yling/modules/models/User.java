@@ -1,13 +1,11 @@
 package com.yling.modules.models;
 
 import com.yling.common.base.Model;
-import org.nutz.dao.entity.annotation.Column;
-import org.nutz.dao.entity.annotation.Comment;
-import org.nutz.dao.entity.annotation.Id;
-import org.nutz.dao.entity.annotation.Table;
+import org.nutz.dao.entity.annotation.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * 文件名：
@@ -17,6 +15,12 @@ import java.sql.Timestamp;
  * 修改人：
  */
 @Table("pm_user")
+@TableIndexes({
+        @Index(name = "E_ID",fields = {"eId"}, unique = false),
+        @Index(name = "LOGIN_NAME",fields = {"loginName"}),
+        @Index(name = "UPDATE_TIME",fields = {"updateTime"}, unique = false),
+        @Index(name = "NICK",fields = {"nick"})
+})
 public class User extends Model implements Serializable
 {
     private static final long serialVersionUID = -1821847457410405720L;
@@ -24,41 +28,59 @@ public class User extends Model implements Serializable
     private	Long id;
     @Column("e_id")
     @Comment("员工工号")
+    @ColDefine(type = ColType.VARCHAR,width = 32,notNull = true)
     private	String eId;
     @Column
+    @ColDefine(type = ColType.VARCHAR,width = 32,notNull = true)
     private	String name;
     @Column
+    @ColDefine(type = ColType.VARCHAR,width = 32,notNull = true)
     private	String nick;
     @Column
     private	Integer age;
     @Column
     private	Integer sex;
     @Column
+    @ColDefine(type = ColType.VARCHAR,width = 12)
     private	String birthday;
     @Column("login_name")
+    @ColDefine(type = ColType.VARCHAR,width = 32,notNull = true)
     private	String loginName;
     @Column("login_password")
+    @ColDefine(type = ColType.VARCHAR,width = 32,notNull = true)
     private	String loginPassword;
     @Column
+    @ColDefine(type = ColType.VARCHAR,width = 32)
     private	String email;
     @Column
+    @ColDefine(type = ColType.VARCHAR,width = 12)
     private	String qq;
     @Column("phone_num")
+    @ColDefine(type = ColType.VARCHAR,width = 12)
     private	String phoneNum;
     @Column
+    @ColDefine(type = ColType.VARCHAR,width = 200)
     private	String addr;
     @Column
+    @ColDefine(type = ColType.VARCHAR,width = 200)
     private	String description;
     @Column("login_num")
     private	Integer loginNum;
     @Column("last_ip")
+    @ColDefine(type = ColType.VARCHAR,width = 32)
     private	String lastIp;
     @Column("last_time")
     private Timestamp lastTime;
     @Column("create_time")
+    @Prev(els = @EL("$me.now()"))
+    @ColDefine(type = ColType.DATETIME,notNull = true)
     private	Timestamp createTime;
     @Column("update_time")
+    @Prev(els = @EL("$me.now()"))
+    @ColDefine(type = ColType.DATETIME,notNull = true)
     private	Timestamp updateTime;
+    @ManyMany(relation = "pm_user_role", from = "user_id", to = "role_id")
+    private List<Role> roles;
 
     public Long getId()
     {
@@ -248,5 +270,15 @@ public class User extends Model implements Serializable
     public void setUpdateTime(Timestamp updateTime)
     {
         this.updateTime = updateTime;
+    }
+
+    public List<Role> getRoles()
+    {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles)
+    {
+        this.roles = roles;
     }
 }

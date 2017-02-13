@@ -21,6 +21,7 @@ public class Role extends Model implements Serializable
     @Id
     private Long id;
     @Column
+    @ColDefine(width = 50,notNull = true)
     private String name;
     @Column
     private Short disabled;
@@ -30,12 +31,16 @@ public class Role extends Model implements Serializable
     private Long opBy;
     @Column("create_time")
     @Prev(els = @EL("$me.now()"))
+    @ColDefine(type = ColType.DATETIME,notNull = true)
     private Timestamp createTime;
     @Column("update_time")
     @Prev(els = @EL("$me.now()"))
+    @ColDefine(type = ColType.DATETIME,notNull = true)
     private Timestamp updateTime;
     @ManyMany(relation = "pm_role_menu",from = "role_id",to = "menu_id")
     private List<Menu> menus;
+    @ManyMany(relation = "pm_user_role",from = "role_id", to = "user_id")
+    private List<User> users;
 
     public Long getId()
     {
@@ -115,5 +120,15 @@ public class Role extends Model implements Serializable
     public void setMenus(List<Menu> menus)
     {
         this.menus = menus;
+    }
+
+    public List<User> getUsers()
+    {
+        return users;
+    }
+
+    public void setUsers(List<User> users)
+    {
+        this.users = users;
     }
 }

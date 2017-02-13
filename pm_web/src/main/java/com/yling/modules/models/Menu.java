@@ -15,6 +15,10 @@ import java.util.List;
  * 修改人：
  */
 @Table("pm_menu")
+@TableIndexes({@Index(name = "CREATE_TIME",fields = {"createTime"},unique = false),
+               @Index(name = "UPDATE_TIME",fields = {"updateTime"},unique = false),
+               @Index(name = "PID_TYPE",fields = {"pid","type"},unique = false),
+               @Index(name = "permission",fields = "permission")})
 public class Menu extends Model implements Serializable
 {
     private static final long serialVersionUID = -292696415871052369L;
@@ -23,26 +27,34 @@ public class Menu extends Model implements Serializable
     @Column
     private Long pid;
     @Column
+    @ColDefine(type = ColType.VARCHAR,width = 50,notNull = true)
     private String name;
     @Column
+    @ColDefine(notNull = true)
     private Short type;
     @Column
+    @ColDefine(type = ColType.VARCHAR,width = 255)
     private String href;
     @Column
+    @ColDefine(type = ColType.VARCHAR,width = 32)
     private String icon;
     @Column
     private Short disabled;
     @Column
+    @ColDefine(type = ColType.VARCHAR,width = 32,notNull = true)
     private String permission;
     @Column
+    @ColDefine(type = ColType.VARCHAR,width = 32)
     private String target;
     @Column
     private Long creator;
     @Column("create_time")
     @Prev(els = @EL("$me.now()"))
+    @ColDefine(type = ColType.DATETIME,notNull = true)
     private Timestamp createTime;
     @Column("update_time")
     @Prev(els = @EL("$me.now()"))
+    @ColDefine(type = ColType.DATETIME,notNull = true)
     private Timestamp updateTime;
     @ManyMany(relation = "pm_role_menu", from = "menu_id", to = "role_id")
     private List<Role> roles;

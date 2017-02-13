@@ -1,9 +1,7 @@
 package com.yling.modules.models;
 
 import com.yling.common.base.Model;
-import org.nutz.dao.entity.annotation.Column;
-import org.nutz.dao.entity.annotation.Id;
-import org.nutz.dao.entity.annotation.Table;
+import org.nutz.dao.entity.annotation.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -22,18 +20,25 @@ public class SysLog extends Model implements Serializable
     @Id
     private	Long id;
     @Column("user_id")
+    @ColDefine(notNull = true)
     private	Long userId;
     @Column
+    @ColDefine(type = ColType.VARCHAR,width = 32)
     private	String nick;
     @Column
+    @ColDefine(type = ColType.VARCHAR,width = 32,notNull = true)
     private	String tag;
     @Column("op_obj")
+    @ColDefine(type = ColType.VARCHAR,width = 255,notNull = true)
     private	String opObj;
     @Column("op_info")
+    @ColDefine(type = ColType.TEXT,notNull = true)
     private	String opInfo;
     @Column("op_result")
     private	Short opResult;
     @Column("create_time")
+    @Prev(els = @EL("$me.now()"))
+    @ColDefine(type = ColType.DATETIME,notNull = true)
     private Timestamp createTime;
 
     public Long getId()

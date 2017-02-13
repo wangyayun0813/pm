@@ -1,10 +1,7 @@
 package com.yling.modules.models;
 
 import com.yling.common.base.Model;
-import org.nutz.dao.entity.annotation.Column;
-import org.nutz.dao.entity.annotation.Id;
-import org.nutz.dao.entity.annotation.Name;
-import org.nutz.dao.entity.annotation.Table;
+import org.nutz.dao.entity.annotation.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -17,19 +14,26 @@ import java.sql.Timestamp;
  * 修改人：
  */
 @Table("pm_tag")
+@TableIndexes({@Index(name = "NAME",fields = {"name"}),
+               @Index(name = "COLOR",fields = {"color"})})
 public class BillTag extends Model implements Serializable
 {
     private static final long serialVersionUID = 8330418045420801112L;
     @Id
     private Long id;
     @Column
+    @ColDefine(type = ColType.VARCHAR,width = 32,notNull = true)
     private String name;
     @Column
-    @Name
+    @ColDefine(type = ColType.VARCHAR,width = 32,notNull = true)
     private String color;
     @Column("create_time")
+    @Prev(els = @EL("$me.now()"))
+    @ColDefine(type = ColType.DATETIME,notNull = true)
     private Timestamp createTime;
     @Column("update_time")
+    @Prev(els = @EL("$me.now()"))
+    @ColDefine(type = ColType.DATETIME,notNull = true)
     private Timestamp updateTime;
 
     public Long getId()

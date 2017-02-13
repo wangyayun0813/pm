@@ -19,7 +19,7 @@ public class Setup implements org.nutz.mvc.Setup
     {
         Ioc ioc = conf.getIoc();
         Dao dao = ioc.get(Dao.class);
-        Daos.createTablesInPackage(dao, "com.yling.modules", false);
+        Daos.createTablesInPackage(dao, "com.yling.modules.models", false);
         //TODO init
     }
 

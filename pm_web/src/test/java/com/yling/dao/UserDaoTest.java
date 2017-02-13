@@ -9,10 +9,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Dao;
+import org.nutz.dao.util.Daos;
 import org.nutz.ioc.Ioc;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,16 +60,19 @@ public class UserDaoTest
         m1.setName("m1");
         m1.setType((short) 1);
         m1.setCreator((long) 1);
+        m1.setCreateTime(Timestamp.valueOf("2016-02-14 11:11:11"));
 
         Menu m2 = new Menu();
         m2.setName("m2");
         m2.setType((short) 1);
         m2.setCreator((long) 1);
+        m2.setCreateTime(Timestamp.valueOf("2016-02-14 11:11:11"));
 
         Menu m3 = new Menu();
         m3.setName("m3");
         m3.setType((short) 1);
         m3.setCreator((long) 1);
+        m3.setCreateTime(Timestamp.valueOf("2016-02-14 11:11:11"));
 
         Role role = new Role();
         role.setName("项目经理");
@@ -90,5 +95,12 @@ public class UserDaoTest
         dao.fetchLinks(role, "menus");
         System.out.println(role.getMenus());
         dao.deleteWith(role, "menus");
+    }
+
+
+    @Test
+    public void testCreateTables()
+    {
+        Daos.createTablesInPackage(dao, "com.yling.modules.models", false);
     }
 }

@@ -1,9 +1,7 @@
 package com.yling.modules.models;
 
 import com.yling.common.base.Model;
-import org.nutz.dao.entity.annotation.Column;
-import org.nutz.dao.entity.annotation.Id;
-import org.nutz.dao.entity.annotation.Table;
+import org.nutz.dao.entity.annotation.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -16,6 +14,8 @@ import java.sql.Timestamp;
  * 修改人：
  */
 @Table("pm_dept")
+@TableIndexes({@Index(name = "PID",fields = {"pid"},unique = false),
+        @Index(name = "UPDATE_TIME",fields = {"updateTime"},unique = false)})
 public class Dept extends Model implements Serializable
 {
     private static final long serialVersionUID = 8157933380164756631L;
@@ -24,10 +24,15 @@ public class Dept extends Model implements Serializable
     @Column
     private Long pid;
     @Column
+    @ColDefine(type = ColType.VARCHAR, width = 50,notNull = true)
     private String name;
     @Column("create_time")
+    @Prev(els = @EL("$me.now()"))
+    @ColDefine(type = ColType.DATETIME,notNull = true)
     private Timestamp createTime;
     @Column("update_time")
+    @Prev(els = @EL("$me.now()"))
+    @ColDefine(type = ColType.DATETIME,notNull = true)
     private Timestamp updateTime;
 
     public Long getId()

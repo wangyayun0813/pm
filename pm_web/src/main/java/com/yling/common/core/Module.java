@@ -17,8 +17,11 @@ import org.nutz.mvc.ioc.provider.ComboIocProvider;
         "*anno", "com.yling",
         "*tx",
         "*async"})
+@ChainBy(args = {"conf/custom/chain.js"})
 @SetupBy(Setup.class)
 @Views(BeetlViewMaker.class)
+@Ok("json:full")
+@Fail("http:500")
 @Encoding(input = "UTF-8", output = "UTF-8")
 public class Module
 {

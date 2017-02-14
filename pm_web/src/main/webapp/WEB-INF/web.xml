@@ -6,7 +6,7 @@
     <display-name>NutzWk</display-name>
 
     <!-- Shiro -->
-    <!--<listener>
+    <listener>
         <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
     </listener>
     <filter>
@@ -20,7 +20,7 @@
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>INCLUDE</dispatcher>
         <dispatcher>ERROR</dispatcher>
-    </filter-mapping>-->
+    </filter-mapping>
 
     <!-- Nutz Mvc -->
     <filter>
@@ -48,7 +48,7 @@
         <dispatcher>ERROR</dispatcher>
     </filter-mapping>
 
-    <!--&lt;!&ndash; druid &ndash;&gt;
+    <!-- druid -->
     <servlet>
         <servlet-name>DruidStatView</servlet-name>
         <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
@@ -68,10 +68,14 @@
 
     <error-page>
         <error-code>403</error-code>
-        <location>/WEB-INF/error/403.html</location>
+        <location>/WEB-INF/views/error/403.html</location>
     </error-page>
     <error-page>
         <error-code>404</error-code>
-        <location>/WEB-INF/error/404.html</location>
-    </error-page>-->
+        <location>/WEB-INF/views/error/404.html</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/views/error/500.html</location>
+    </error-page>
 </web-app>

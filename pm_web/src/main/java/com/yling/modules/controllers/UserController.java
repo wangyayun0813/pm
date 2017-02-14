@@ -27,4 +27,14 @@ public class UserController
         user.setNick("admin");
         req.setAttribute("user",user);
     }
+
+    @At("/json")
+    @Ok("json:{ignoreNull:true}")
+    public Object json()
+    {
+        User user = new User();
+        user.setName("张三");
+        user.setNick("周四去");
+        return user;
+    }
 }

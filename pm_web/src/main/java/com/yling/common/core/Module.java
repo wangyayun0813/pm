@@ -1,8 +1,7 @@
 package com.yling.common.core;
 
-import org.nutz.mvc.annotation.IocBy;
-import org.nutz.mvc.annotation.Modules;
-import org.nutz.mvc.annotation.SetupBy;
+import org.beetl.ext.nutz.BeetlViewMaker;
+import org.nutz.mvc.annotation.*;
 import org.nutz.mvc.ioc.provider.ComboIocProvider;
 
 /**
@@ -19,6 +18,8 @@ import org.nutz.mvc.ioc.provider.ComboIocProvider;
         "*tx",
         "*async"})
 @SetupBy(Setup.class)
+@Views(BeetlViewMaker.class)
+@Encoding(input = "UTF-8", output = "UTF-8")
 public class Module
 {
 }

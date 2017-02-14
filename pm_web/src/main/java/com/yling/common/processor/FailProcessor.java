@@ -14,8 +14,8 @@ import org.nutz.mvc.view.ServerRedirectView;
  */
 public class FailProcessor extends ViewProcessor
 {
-    protected static final String SYS_ERROR_URI = "sysError";
-    protected static final String USE_ERROR_URI = "userError";
+    protected static final String SYS_ERROR_URI = "/sysError";
+    protected static final String USE_ERROR_URI = "/userError";
 
     @Override
     public void process(ActionContext ac) throws Throwable

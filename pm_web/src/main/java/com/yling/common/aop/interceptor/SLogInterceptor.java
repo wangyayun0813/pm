@@ -2,7 +2,6 @@ package com.yling.common.aop.interceptor;
 
 import com.yling.common.annotation.SLog;
 import com.yling.common.base.Result;
-import com.yling.common.util.StringUtil;
 import com.yling.modules.models.SysLog;
 import com.yling.modules.service.SysLogService;
 import org.nutz.aop.InterceptorChain;
@@ -26,12 +25,13 @@ public class SLogInterceptor implements MethodInterceptor
     private String tag;
     private String obj;
     private SysLogService sysLogService;
-    public SLogInterceptor(Ioc ioc, SLog sLog, Method method)
+    public SLogInterceptor(Ioc ioc, SLog sLog, Method method, SysLogService sysLogService)
     {
         this.ioc = ioc;
         this.sLog = sLog;
         this.tag = sLog.tag();
         this.obj = sLog.obj();
+        this.sysLogService = sysLogService;
         if(Strings.isEmpty(obj))
         {
             this.obj = method.getDeclaringClass().getName() + "#" + method.getName();
@@ -51,12 +51,10 @@ public class SLogInterceptor implements MethodInterceptor
         if(ret instanceof Result)
         {
             Result result = (Result) ret;
-            String ip = StringUtil.getRemoteAddr();
             Long userId = 1l;
             String nick = "zhangSan";
+            //TODO modify nick and userId
             SysLog sysLog = SysLog.c(userId,nick,tag,obj,result.getMsg().toString(),(result.isSuccess()?(short) 1:(short)2));
-            if(sysLogService == null)
-                sysLogService = ioc.get(SysLogService.class);
             sysLogService.dao().insert(sysLog);
         }
     }

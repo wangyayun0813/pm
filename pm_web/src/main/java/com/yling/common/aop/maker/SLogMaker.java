@@ -2,9 +2,11 @@ package com.yling.common.aop.maker;
 
 import com.yling.common.annotation.SLog;
 import com.yling.common.aop.interceptor.SLogInterceptor;
+import com.yling.modules.service.SysLogService;
 import org.nutz.aop.MethodInterceptor;
 import org.nutz.ioc.Ioc;
 import org.nutz.ioc.aop.SimpleAopMaker;
+import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 
 import java.lang.reflect.Method;
@@ -21,9 +23,11 @@ import java.util.List;
 @IocBean(name="$aop_syslog")
 public class SLogMaker extends SimpleAopMaker<SLog>
 {
+    @Inject
+    private SysLogService sysLogService;
     @Override
     public List<? extends MethodInterceptor> makeIt(SLog sLog, Method method, Ioc ioc)
     {
-        return Arrays.asList(new SLogInterceptor(ioc,sLog,method));
+        return Arrays.asList(new SLogInterceptor(ioc,sLog,method,sysLogService));
     }
 }

@@ -1,6 +1,7 @@
 package com.yling.common.core;
 
 import org.beetl.ext.nutz.BeetlViewMaker;
+import org.nutz.integration.shiro.ShiroSessionProvider;
 import org.nutz.mvc.annotation.*;
 import org.nutz.mvc.ioc.provider.ComboIocProvider;
 
@@ -23,6 +24,7 @@ import org.nutz.mvc.ioc.provider.ComboIocProvider;
 @Ok("json:full")
 @Fail("http:500")
 @Encoding(input = "UTF-8", output = "UTF-8")
+@SessionBy(ShiroSessionProvider.class)
 public class Module
 {
 }

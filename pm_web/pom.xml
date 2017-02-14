@@ -94,6 +94,11 @@
             <artifactId>shiro-web</artifactId>
             <version>1.2.5</version>
         </dependency>
+        <dependency>
+            <groupId>org.nutz</groupId>
+            <artifactId>nutz-integration-shiro</artifactId>
+            <version>${nutz.version}</version>
+        </dependency>
 
         <!--log4j-->
         <dependency>

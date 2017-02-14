@@ -120,4 +120,16 @@ public class SysLog extends BaseModel implements Serializable
     {
         this.createTime = createTime;
     }
+
+    public static SysLog c(Long userId,String nick,String tag,String obj,String info,Short opResult)
+    {
+        SysLog sysLog = new SysLog();
+        sysLog.setUserId(userId);
+        sysLog.setNick(nick);
+        sysLog.setTag(tag);
+        sysLog.setOpObj(obj);
+        sysLog.setOpInfo(info);
+        sysLog.setOpResult(opResult);
+        return sysLog;
+    }
 }

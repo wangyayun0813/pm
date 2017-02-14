@@ -5,8 +5,6 @@ import org.nutz.mvc.ActionContext;
 import org.nutz.mvc.impl.processor.ViewProcessor;
 import org.nutz.mvc.view.ServerRedirectView;
 
-import javax.servlet.http.HttpServletResponse;
-
 /**
  * 文件名：
  * 描述：异常处理
@@ -25,7 +23,6 @@ public class FailProcessor extends ViewProcessor
         Throwable error = ac.getError();
         if(error!=null)
         {
-            HttpServletResponse res = ac.getResponse();
             if(error instanceof BaseException)
             {
                 new ServerRedirectView(USE_ERROR_URI).render(ac.getRequest(), ac.getResponse(), null);

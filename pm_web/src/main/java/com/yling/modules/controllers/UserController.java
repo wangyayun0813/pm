@@ -1,5 +1,7 @@
 package com.yling.modules.controllers;
 
+import com.yling.common.annotation.SLog;
+import com.yling.common.base.Result;
 import com.yling.modules.models.User;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.annotation.At;
@@ -30,11 +32,18 @@ public class UserController
 
     @At("/json")
     @Ok("json:{ignoreNull:true}")
+    @SLog(tag = "xxxxxx",obj = "qqqqqq")
     public Object json()
     {
+        Result<User> result = new Result<User>();
         User user = new User();
         user.setName("张三");
         user.setNick("周四去");
-        return user;
+        result.setDate(user);
+        result.append("[成功]操作1");
+        result.append("[成功]操作2");
+        result.append("[成功]操作3");
+        result.append("[成功]操作4");
+        return result;
     }
 }

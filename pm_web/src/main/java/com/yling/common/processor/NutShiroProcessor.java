@@ -24,7 +24,7 @@ public class NutShiroProcessor extends AbstractProcessor
 {
     protected NutShiroMethodInterceptor interceptor;
     protected String loginUri = "/login";
-    protected String noAuthUri = "/login/noPermission";
+    protected String noAuthUri = "/noPermission";
     protected boolean match;
     protected boolean init;
 

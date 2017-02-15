@@ -33,4 +33,10 @@ public class HomeController
     public void userError()
     {
     }
+
+    @At(top = true,value = "/noPermission")
+    @Ok("beetl:error/noPermission.html")
+    public void noPermission()
+    {
+    }
 }

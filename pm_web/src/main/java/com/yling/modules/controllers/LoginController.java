@@ -48,11 +48,4 @@ public class LoginController
             throw e;
         }
     }
-
-    @At
-    @Ok("beetl:error.noPermission.html")
-    public void noPermission()
-    {
-
-    }
 }

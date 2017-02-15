@@ -4,6 +4,7 @@
 var chain = {
     "default": {
         "ps": [
+            "com.yling.common.processor.NutShiroProcessor",
             "org.nutz.mvc.impl.processor.UpdateRequestAttributesProcessor",
             "org.nutz.mvc.impl.processor.EncodingProcessor",
             "org.nutz.mvc.impl.processor.ModuleProcessor",

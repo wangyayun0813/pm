@@ -75,4 +75,9 @@ public class Result<T>
         this.msg.append(msg).append("<br/>");
     }
 
+    public static Result error(String error)
+    {
+        return new Result(error);
+    }
+
 }

@@ -38,6 +38,42 @@ public class BaseService<T> extends EntityService<T>
         return this.dao().count(tableName, cnd);
     }
 
+    public T insert(T t)
+    {
+        return this.dao().insert(t);
+    }
+
+    public T fastInsert(T t)
+    {
+        return this.dao().fastInsert(t);
+    }
+
+    public int update(T t)
+    {
+        return this.dao().update(t);
+    }
+
+    public int updateIgnoreNull(Object obj) {
+        return this.dao().updateIgnoreNull(obj);
+    }
+
+    public T fetchLinks(T t,String name)
+    {
+        return this.dao().fetchLinks(t,name);
+    }
+
+    public <T> T fetchLinks(T t, String name, Condition cnd) {
+        return this.dao().fetchLinks(t, name, cnd);
+    }
+
+    public int delete(String name) {
+        return this.dao().delete(this.getEntityClass(), name);
+    }
+
+    public int delete(long id) {
+        return this.dao().delete(this.getEntityClass(), id);
+    }
+
     public Page listPage(int pageNo, int pageSize, Condition cnd)
     {
         if(pageSize<=0)

@@ -1,9 +1,13 @@
 package com.yling.modules.controllers;
 
 import com.yling.common.base.BaseException;
+import com.yling.common.filter.ShiroAuthenticationFilter;
+import com.yling.common.shiro.realm.CaptchaToken;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.subject.Subject;
 import org.nutz.ioc.loader.annotation.IocBean;
-import org.nutz.mvc.annotation.At;
-import org.nutz.mvc.annotation.Ok;
+import org.nutz.mvc.annotation.*;
 
 /**
  * 文件名：
@@ -17,9 +21,31 @@ import org.nutz.mvc.annotation.Ok;
 public class LoginController
 {
     @At("")
-    @Ok("beetl:login.html")
-    public void index() throws Exception
+    @Ok("re")
+    public String index() throws Exception
     {
-        throw new BaseException(1,"baseXXXX");
+
+        Subject subject = SecurityUtils.getSubject();
+        if(subject.isAuthenticated())
+            return ">>:/home";
+        else return "beetl:login.html";
+    }
+
+    @At("/doLogin")
+    @Ok(">>:/home")
+    @Filters(@By(type = ShiroAuthenticationFilter.class))
+    public void doLogin(@Attr("loginToken") CaptchaToken token)throws Exception
+    {
+        Subject subject = SecurityUtils.getSubject();
+        try
+        {
+            subject.login(token);
+        } catch (AuthenticationException e)
+        {
+            throw new BaseException(11,e.getMessage());
+        }catch (Exception e)
+        {
+            throw e;
+        }
     }
 }

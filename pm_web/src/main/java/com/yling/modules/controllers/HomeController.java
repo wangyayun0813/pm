@@ -1,5 +1,6 @@
 package com.yling.modules.controllers;
 
+import com.yling.common.base.Result;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
@@ -12,9 +13,15 @@ import org.nutz.mvc.annotation.Ok;
  * 修改人：
  */
 @IocBean
-@At("/")
+@At("/home")
 public class HomeController
 {
+    @At("")
+    public Object home()
+    {
+        return new Result<>("xxxx");
+    }
+
     @At(top = true,value = "/sysError")
     @Ok("beetl:error/sysError.html")
     public void sysError()

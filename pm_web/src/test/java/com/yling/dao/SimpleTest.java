@@ -1,5 +1,7 @@
 package com.yling.dao;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.junit.Test;
 import org.nutz.dao.Cnd;
 import org.nutz.log.Log;
@@ -27,5 +29,6 @@ public class SimpleTest
     {
         Cnd aNew = Cnd.NEW();
         System.out.println(aNew.toString());
+        Subject subject = SecurityUtils.getSubject();
     }
 }

@@ -3,7 +3,7 @@ package com.yling.common.processor;
 import com.yling.common.base.BaseException;
 import org.nutz.mvc.ActionContext;
 import org.nutz.mvc.impl.processor.ViewProcessor;
-import org.nutz.mvc.view.ServerRedirectView;
+import org.nutz.mvc.view.ForwardView;
 
 /**
  * 文件名：
@@ -25,9 +25,13 @@ public class FailProcessor extends ViewProcessor
         {
             if(error instanceof BaseException)
             {
-                new ServerRedirectView(USE_ERROR_URI).render(ac.getRequest(), ac.getResponse(), null);
+                BaseException be = (BaseException) error;
+                ac.getRequest().setAttribute("errorMsg",be.getMessage());
+                ac.getRequest().setAttribute("errorCode",be.getCode());
+                new ForwardView(USE_ERROR_URI).render(ac.getRequest(), ac.getResponse(), null);
             }else {
-                new ServerRedirectView(SYS_ERROR_URI).render(ac.getRequest(), ac.getResponse(), null);
+                ac.getRequest().setAttribute("errorMsg",error.getMessage());
+                new ForwardView(SYS_ERROR_URI).render(ac.getRequest(), ac.getResponse(), null);
             }
             return;
         }

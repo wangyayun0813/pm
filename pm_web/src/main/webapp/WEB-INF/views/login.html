@@ -5,7 +5,12 @@
     <title>Title</title>
 </head>
 <body>
-loginName:<input name="loginName"/><br>
-password:<input name="password" type="password">
+<%
+%>
+<form method="post" action="${base!}/login/doLogin">
+    loginName:${test!}<input name="username" placeholder="${base2!}"/><br>
+    password:&lt;aaa&gt;<input name="password" type="password"><br>
+    <button type="submit">提交</button>
+</form>
 </body>
 </html>

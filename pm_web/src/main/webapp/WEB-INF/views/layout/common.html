@@ -73,62 +73,27 @@
                 <!-- Quick Actions -->
                 <ul class="nav navbar-nav quick-actions">
                     <li class="dropdown divided user" id="current-user">
-                        <div class="profile-photo">
+                        <!--<div class="profile-photo">
                             <img src="${base!}/assets/images/profile-photo.jpg" alt/>
-                        </div>
+                        </div>-->
                         <a class="dropdown-toggle options" data-toggle="dropdown" href="#">
-                            John Douey <i class="fa fa-caret-down"></i>
+                            administrator <i class="fa fa-caret-down"></i>
                         </a>
 
                         <ul class="dropdown-menu arrow settings">
 
                             <li>
+                                <a href="#"><i class="fa fa-user"></i> 修改用户资料</a>
+                            </li>
 
-                                <h3>Backgrounds:</h3>
-                                <ul id="color-schemes">
-                                    <li><a href="#" class="bg-1"></a></li>
-                                    <li><a href="#" class="bg-2"></a></li>
-                                    <li><a href="#" class="bg-3"></a></li>
-                                    <li><a href="#" class="bg-4"></a></li>
-                                    <li><a href="#" class="bg-5"></a></li>
-                                    <li><a href="#" class="bg-6"></a></li>
-                                </ul>
-
-                                <div class="form-group videobg-check">
-                                    <label class="col-xs-8 control-label">Video BG</label>
-                                    <div class="col-xs-4 control-label">
-                                        <div class="onoffswitch greensea small">
-                                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
-                                                   id="videobg-check">
-                                            <label class="onoffswitch-label" for="videobg-check">
-                                                <span class="onoffswitch-inner"></span>
-                                                <span class="onoffswitch-switch"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
+                            <li>
+                                <a href="#"><i class="fa fa-envelope"></i>系统日志</a>
                             </li>
 
                             <li class="divider"></li>
 
                             <li>
-                                <a href="#"><i class="fa fa-user"></i> Profile</a>
-                            </li>
-
-                            <li>
-                                <a href="#"><i class="fa fa-calendar"></i> Calendar</a>
-                            </li>
-
-                            <li>
-                                <a href="#"><i class="fa fa-envelope"></i> Inbox <span class="badge badge-red"
-                                                                                       id="user-inbox">3</span></a>
-                            </li>
-
-                            <li class="divider"></li>
-
-                            <li>
-                                <a href="#"><i class="fa fa-power-off"></i> Logout</a>
+                                <a href="${base!}/login/logout"><i class="fa fa-power-off"></i> 退出登录</a>
                             </li>
                         </ul>
                     </li>
@@ -150,26 +115,19 @@
                                 class="fa fa-angle-up"></i></a>
 
                         <ul class="menu">
-
-                            <li class="active">
-                                <a href="index.html">
-                                    <i class="fa fa-tachometer"></i> 用户管理
-                                </a>
-                            </li>
-
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-list"></i> 工资管理 <b class="fa fa-plus dropdown-plus"></b>
+                                    <i class="fa fa-list"></i> 工资 <b class="fa fa-plus dropdown-plus"></b>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="form-elements.html">
-                                            <i class="fa fa-caret-right"></i> 工资设置
+                                            <i class="fa fa-caret-right"></i> 工资管理
                                         </a>
                                     </li>
                                     <li>
                                         <a href="validation-elements.html">
-                                            <i class="fa fa-caret-right"></i> 工时设置
+                                            <i class="fa fa-caret-right"></i> 工时管理
                                         </a>
                                     </li>
                                 </ul>
@@ -177,22 +135,40 @@
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-pencil"></i> 账单管理 <b class="fa fa-plus dropdown-plus"></b>
+                                    <i class="fa fa-pencil"></i> 账单 <b class="fa fa-plus dropdown-plus"></b>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="ui-elements.html">
-                                            <i class="fa fa-caret-right"></i> UI Elements
+                                            <i class="fa fa-caret-right"></i> 账单管理
                                         </a>
                                     </li>
                                     <li>
                                         <a href="typography.html">
-                                            <i class="fa fa-caret-right"></i> Typography
+                                            <i class="fa fa-caret-right"></i> 标签管理
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-tachometer"></i> 用户<b class="fa fa-plus dropdown-plus"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="${base!}/user">
+                                            <i class="fa fa-caret-right"></i> 用户管理
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="tiles.html">
-                                            <i class="fa fa-caret-right"></i> Tiles
+                                        <a href="${base!}/role">
+                                            <i class="fa fa-caret-right"></i> 角色管理
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="${base!}/dept">
+                                            <i class="fa fa-caret-right"></i> 部门管理
                                         </a>
                                     </li>
                                 </ul>

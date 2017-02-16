@@ -40,7 +40,7 @@ public class LoginController extends BaseController
     }
 
     @At("/doLogin")
-    @Ok(">>:/home")
+    @Ok(">>:/sys/home")
     @Filters(@By(type = ShiroAuthenticationFilter.class))
     public void doLogin(@Attr("loginToken") CaptchaToken token)throws Exception
     {

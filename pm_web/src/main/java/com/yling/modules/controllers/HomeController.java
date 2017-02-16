@@ -14,10 +14,11 @@ import org.nutz.mvc.annotation.Ok;
  * 修改人：
  */
 @IocBean
-@At("/home")
+@At("/sys")
 public class HomeController extends BaseController
 {
-    @At("")
+    @At("/home")
+    @Ok("beetl:sys/home.html")
     public Object home()
     {
         return new Result<>("xxxx");

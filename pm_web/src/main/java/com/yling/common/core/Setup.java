@@ -299,8 +299,8 @@ public class Setup implements org.nutz.mvc.Setup
             m411.setHref("/tag/add");
             m411.setPermission("tag.add");
             m411.setType(SiteContants.MENU_TYPE_OPERATION);
-            m251.setDisabled(SiteContants.FLAG_YES);
-            m251.setPid(m41.getId());
+            m411.setDisabled(SiteContants.FLAG_YES);
+            m411.setPid(m41.getId());
 
             Menu m412 = new Menu();
             m412.setName("标签删除");

@@ -35,7 +35,7 @@ public class LoginController extends BaseController
 
         Subject subject = SecurityUtils.getSubject();
         if(subject.isAuthenticated())
-            return ">>:/home";
+            return ">>:/sys/home";
         else return "beetl:login.html";
     }
 

@@ -15,4 +15,7 @@ public class SiteContants
     public static final short FLAG_NO = 1;
 
     public static final String SALT = "wangyayun520shengyuanling";
+
+    public static final short MENU_TYPE_PAGE = 1;
+    public static final short MENU_TYPE_OPERATION = 2;
 }

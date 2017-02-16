@@ -34,6 +34,6 @@ public class ShiroAuthenticationFilter extends FormAuthenticationFilter implemen
         String host = getHost(request);
         boolean rememberMe = isRememberMe(request);
         String captcha = WebUtils.getCleanParam(request,"captcha");
-        return new CaptchaToken(username,password,rememberMe,host,captcha);
+        return new CaptchaToken(username, password,rememberMe,host,captcha);
     }
 }

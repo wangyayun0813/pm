@@ -1,7 +1,8 @@
 package com.yling.common.util;
 
+import com.yling.common.base.SiteContants;
+import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.nutz.ioc.loader.annotation.IocBean;
-import org.nutz.lang.Lang;
 import org.nutz.lang.Strings;
 import org.nutz.mvc.Mvcs;
 
@@ -45,16 +46,12 @@ public class StringUtil
     }
 
     /**
-     * 计算MD5密码
-     *
-     * @param loginname
+     * 计算密码
      * @param password
-     * @param createAt
      * @return
      */
-    public static String getPassword(String loginname, String password, int createAt) {
-        String p = Lang.md5(Lang.md5(password) + loginname + createAt);
-        return 'w' + p.substring(0, p.length() - 1);
+    public static String getPassword(String password) {
+        return new Sha256Hash(password, SiteContants.SALT, 1024).toBase64();
     }
 
     /**

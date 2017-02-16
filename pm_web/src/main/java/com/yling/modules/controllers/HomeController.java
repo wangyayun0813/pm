@@ -1,5 +1,6 @@
 package com.yling.modules.controllers;
 
+import com.yling.common.base.BaseController;
 import com.yling.common.base.Result;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.annotation.At;
@@ -14,7 +15,7 @@ import org.nutz.mvc.annotation.Ok;
  */
 @IocBean
 @At("/home")
-public class HomeController
+public class HomeController extends BaseController
 {
     @At("")
     public Object home()

@@ -10,11 +10,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Dao;
+import org.nutz.dao.Sqls;
+import org.nutz.dao.sql.Sql;
+import org.nutz.dao.sql.SqlCallback;
 import org.nutz.dao.util.Daos;
 import org.nutz.ioc.Ioc;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -116,5 +122,26 @@ public class UserDaoTest
         // Page page = service.listPage(0, 0);
         // System.out.println(page);
         System.out.println(menuService.listPage(3,10,Cnd.where("type","=",1)));
+    }
+
+    @Test
+    public void testUI()
+    {
+        // Dao dao = Mvcs.getIoc().get(Dao.class);
+        Sql sql = Sqls.create("select concat('PME_',lpad(max(id)+1,5,0)) from pm_user order by id desc limit 1");
+        sql.setCallback(new SqlCallback()
+        {
+            @Override
+            public Object invoke(Connection conn, ResultSet rs, Sql sql) throws SQLException
+            {
+                if(rs!=null && rs.next())
+                {
+                    return rs.getString(1);
+                }
+                return "PME_00001";
+            }
+        });
+        dao.execute(sql);
+        System.out.println(sql.getString());
     }
 }

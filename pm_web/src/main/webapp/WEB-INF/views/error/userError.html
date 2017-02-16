@@ -1,11 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Minimal 1.0 - Page 404</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+
+    <link rel="icon" type="image/ico" href="${base!}/assets/images/favicon.ico" />
+    <!-- Bootstrap -->
+    <link href="${base!}/assets/css/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="${base!}/assets/css/vendor/bootstrap-checkbox.css">
+
+    <link href="${base!}/assets/css/minimal.css" rel="stylesheet">
+
 </head>
-<body>
-errorCode:${errorCode!}<br>
-errorMsg:${errorMsg!}
+<body class="bg-3">
+<!-- Wrap all page content here -->
+<div id="wrap">
+
+    <!-- Make page fluid -->
+    <div class="row">
+
+        <!-- Page content -->
+        <div id="content" class="col-md-12 full-page error">
+            <div class="inside-block">
+                <h1 class="error"><strong>操作错误</strong></h1>
+                <p style="text-align: left;"><span class="overline">&nbsp;&nbsp;错 误 码:</span>${errorCode!}<br/>错误信息:${errorMsg!}</p>
+
+                <div class="controls">
+                    <a class="btn btn-greensea" href="${base!}/home"><i class="fa fa-home"></i>返回首页</a>
+                </div>
+
+            </div>
+
+
+        </div>
+        <!-- /Page content -->
+
+    </div>
+
+</div>
+<!-- Wrap all page content end -->
+
 </body>
 </html>

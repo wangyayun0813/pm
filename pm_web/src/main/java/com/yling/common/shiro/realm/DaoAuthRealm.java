@@ -13,6 +13,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.nutz.dao.Cnd;
 import org.nutz.lang.Strings;
 import org.nutz.mvc.Mvcs;
@@ -71,6 +72,8 @@ public class DaoAuthRealm extends AuthorizingRealm
         User user = getUserService().fetch(Cnd.where("login_name", "=", username));
         if(null == user)
             throw new AuthenticationException("用户未注册！");
-        return new SimpleAuthenticationInfo(user,user.getLoginPassword(),getName());
+        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getLoginPassword(), getName());
+        info.setCredentialsSalt(ByteSource.Util.bytes(SiteContants.SALT));
+        return info;
     }
 }

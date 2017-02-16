@@ -13,4 +13,6 @@ public class SiteContants
     public static final short FLAG_YES = 0;
     /** 异常/禁用 **/
     public static final short FLAG_NO = 1;
+
+    public static final String SALT = "wangyayun520shengyuanling";
 }

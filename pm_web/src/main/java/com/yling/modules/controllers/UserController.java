@@ -1,6 +1,7 @@
 package com.yling.modules.controllers;
 
 import com.yling.common.annotation.SLog;
+import com.yling.common.base.BaseController;
 import com.yling.common.base.Result;
 import com.yling.modules.models.User;
 import org.nutz.ioc.loader.annotation.IocBean;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @IocBean
 @At("/user")
-public class UserController
+public class UserController extends BaseController
 {
     @At("")
     @Ok("beetl:index.html")

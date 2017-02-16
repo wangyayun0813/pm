@@ -1,9 +1,18 @@
 package com.yling.modules.models;
 
 import com.yling.common.base.BaseModel;
+import org.apache.commons.lang3.StringUtils;
+import org.nutz.dao.Dao;
+import org.nutz.dao.Sqls;
 import org.nutz.dao.entity.annotation.*;
+import org.nutz.dao.sql.Sql;
+import org.nutz.dao.sql.SqlCallback;
+import org.nutz.mvc.Mvcs;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -29,6 +38,7 @@ public class User extends BaseModel implements Serializable
     @Column("e_id")
     @Comment("员工工号")
     @ColDefine(type = ColType.VARCHAR,width = 32,notNull = true)
+    @Prev(els = @EL("$me.genEID()"))
     private	String eId;
     @Column
     @ColDefine(type = ColType.VARCHAR,width = 32,notNull = true)
@@ -47,7 +57,7 @@ public class User extends BaseModel implements Serializable
     @ColDefine(type = ColType.VARCHAR,width = 32,notNull = true)
     private	String loginName;
     @Column("login_password")
-    @ColDefine(type = ColType.VARCHAR,width = 32,notNull = true)
+    @ColDefine(type = ColType.VARCHAR,width = 100,notNull = true)
     private	String loginPassword;
     @Column
     @ColDefine(type = ColType.VARCHAR,width = 32)
@@ -280,5 +290,26 @@ public class User extends BaseModel implements Serializable
     public void setRoles(List<Role> roles)
     {
         this.roles = roles;
+    }
+
+    public String genEID()
+    {
+        Dao dao = Mvcs.getIoc().get(Dao.class);
+        Sql sql = Sqls.create("select concat('PME_',lpad(max(id)+1,5,0)) from pm_user order by id desc limit 1");
+        sql.setCallback(new SqlCallback()
+        {
+            @Override
+            public Object invoke(Connection conn, ResultSet rs, Sql sql) throws SQLException
+            {
+                if(rs!=null && rs.next())
+                {
+                    return rs.getString(1);
+                }
+                return "";
+            }
+        });
+        dao.execute(sql);
+        String id = sql.getString();
+        return StringUtils.isEmpty(id)?"PME_00001":id;
     }
 }

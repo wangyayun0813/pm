@@ -17,8 +17,6 @@ import org.nutz.dao.Cnd;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * 文件名：
  * 描述：
@@ -44,7 +42,7 @@ public class LoginController extends BaseController
     @At("/doLogin")
     @Ok("re")
     @Filters(@By(type = ShiroAuthenticationFilter.class))
-    public String doLogin(@Attr("loginToken") CaptchaToken token, HttpServletRequest request)throws Exception
+    public String doLogin(@Attr("loginToken") CaptchaToken token)throws Exception
     {
         Subject subject = SecurityUtils.getSubject();
         try
@@ -59,11 +57,11 @@ public class LoginController extends BaseController
             userService.update(chain, Cnd.where("id","=",user.getId()));
             return ">>:/sys/home";
         }catch (MyAuthenticationException e){
-            request.setAttribute("errorMsg",e.getMessage());
+            getReq().setAttribute("errorMsg",e.getMessage());
             return "->:/login";
         }catch (AuthenticationException e)
         {
-            request.setAttribute("errorMsg","密码错误！");
+            getReq().setAttribute("errorMsg","密码错误！");
             return "->:/login";
         }catch (Exception e)
         {

@@ -4,6 +4,10 @@ import com.yling.modules.service.MenuService;
 import com.yling.modules.service.SysLogService;
 import com.yling.modules.service.UserService;
 import org.nutz.ioc.loader.annotation.Inject;
+import org.nutz.mvc.Mvcs;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 文件名：
@@ -20,4 +24,14 @@ public class BaseController
     protected SysLogService sysLogService;
     @Inject
     protected MenuService menuService;
+
+    protected HttpServletRequest getReq()
+    {
+        return Mvcs.getReq();
+    }
+
+    protected HttpServletResponse getResp()
+    {
+        return Mvcs.getResp();
+    }
 }

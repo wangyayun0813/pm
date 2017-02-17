@@ -1,6 +1,7 @@
 package com.yling.common.shiro.realm;
 
 import com.yling.common.base.SiteContants;
+import com.yling.common.shiro.exception.MyAuthenticationException;
 import com.yling.modules.models.Role;
 import com.yling.modules.models.User;
 import com.yling.modules.service.RoleService;
@@ -68,10 +69,10 @@ public class DaoAuthRealm extends AuthorizingRealm
         CaptchaToken token = (CaptchaToken) authenticationToken;
         String username = token.getUsername();
         if(Strings.isEmpty(username))
-            throw new AuthenticationException("用户名不能为空！");
+            throw new MyAuthenticationException("用户名不能为空！");
         User user = getUserService().fetch(Cnd.where("login_name", "=", username));
         if(null == user)
-            throw new AuthenticationException("用户未注册！");
+            throw new MyAuthenticationException("用户未注册！");
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getLoginPassword(), getName());
         info.setCredentialsSalt(ByteSource.Util.bytes(SiteContants.SALT));
         return info;

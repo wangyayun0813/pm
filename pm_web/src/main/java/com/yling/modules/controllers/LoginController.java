@@ -1,9 +1,9 @@
 package com.yling.modules.controllers;
 
 import com.yling.common.base.BaseController;
-import com.yling.common.base.BaseException;
 import com.yling.common.base.SiteContants;
 import com.yling.common.filter.ShiroAuthenticationFilter;
+import com.yling.common.shiro.exception.MyAuthenticationException;
 import com.yling.common.shiro.realm.CaptchaToken;
 import com.yling.common.util.DateUtil;
 import com.yling.common.util.StringUtil;
@@ -16,6 +16,8 @@ import org.nutz.dao.Chain;
 import org.nutz.dao.Cnd;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 文件名：
@@ -40,9 +42,9 @@ public class LoginController extends BaseController
     }
 
     @At("/doLogin")
-    @Ok(">>:/sys/home")
+    @Ok("re")
     @Filters(@By(type = ShiroAuthenticationFilter.class))
-    public void doLogin(@Attr("loginToken") CaptchaToken token)throws Exception
+    public String doLogin(@Attr("loginToken") CaptchaToken token, HttpServletRequest request)throws Exception
     {
         Subject subject = SecurityUtils.getSubject();
         try
@@ -55,9 +57,14 @@ public class LoginController extends BaseController
                     .add("login_num", user.getLoginNum() != null ? user.getLoginNum() + 1 : 1)
                     .add("last_time", DateUtil.timestamp());
             userService.update(chain, Cnd.where("id","=",user.getId()));
-        } catch (AuthenticationException e)
+            return ">>:/sys/home";
+        }catch (MyAuthenticationException e){
+            request.setAttribute("errorMsg",e.getMessage());
+            return "->:/login";
+        }catch (AuthenticationException e)
         {
-            throw new BaseException(11,e.getMessage());
+            request.setAttribute("errorMsg","密码错误！");
+            return "->:/login";
         }catch (Exception e)
         {
             throw e;

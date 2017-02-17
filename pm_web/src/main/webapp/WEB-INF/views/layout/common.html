@@ -63,11 +63,11 @@
             <div class="navbar-collapse">
 
                 <!-- Page refresh -->
-                <ul class="nav navbar-nav refresh">
+                <!--<ul class="nav navbar-nav refresh">
                     <li class="divided">
                         <a href="#" class="page-refresh"><i class="fa fa-refresh"></i></a>
                     </li>
-                </ul>
+                </ul>-->
                 <!-- /Page refresh -->
 
                 <!-- Quick Actions -->
@@ -83,11 +83,11 @@
                         <ul class="dropdown-menu arrow settings">
 
                             <li>
-                                <a href="#"><i class="fa fa-user"></i> 修改用户资料</a>
+                                <a href="${base!}/sys/user"><i class="fa fa-user"></i> 修改用户资料</a>
                             </li>
 
                             <li>
-                                <a href="#"><i class="fa fa-envelope"></i>系统日志</a>
+                                <a href="${base!}/sys/sysLog"><i class="fa fa-envelope"></i>系统日志</a>
                             </li>
 
                             <li class="divider"></li>
@@ -172,6 +172,11 @@
                                         </a>
                                     </li>
                                 </ul>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class=""></i> 日志
+                                </a>
                             </li>
                         </ul>
 

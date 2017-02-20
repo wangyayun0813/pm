@@ -3,6 +3,7 @@ package com.yling.modules.controllers;
 import com.yling.common.base.BaseController;
 import com.yling.common.base.Result;
 import com.yling.common.page.Page;
+import org.nutz.dao.Cnd;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
@@ -50,7 +51,7 @@ public class HomeController extends BaseController
     @Ok("beetl:sys/sysLog.html")
     public void sysLog(HttpServletRequest request, @Param("pageNo")int pageNo,@Param("pageSize") int pageSize)
     {
-        Page page = sysLogService.listPage(pageNo, pageSize);
+        Page page = sysLogService.listPage(pageNo, pageSize, Cnd.NEW().desc("create_time"));
         request.setAttribute("p",page);
     }
 }

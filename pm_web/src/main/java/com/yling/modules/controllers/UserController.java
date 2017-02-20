@@ -3,10 +3,13 @@ package com.yling.modules.controllers;
 import com.yling.common.annotation.SLog;
 import com.yling.common.base.BaseController;
 import com.yling.common.base.Result;
+import com.yling.common.page.Page;
 import com.yling.modules.models.User;
+import org.nutz.dao.Cnd;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
+import org.nutz.mvc.annotation.Param;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,13 +25,11 @@ import javax.servlet.http.HttpServletRequest;
 public class UserController extends BaseController
 {
     @At("")
-    @Ok("beetl:index.html")
-    public void index(HttpServletRequest req)
+    @Ok("beetl:user/list.html")
+    public void index(HttpServletRequest req, @Param("pageNo")int pageNo,@Param("pageSize")int pageSize)
     {
-        User user = new User();
-        user.setName("zhangSan");
-        user.setNick("admin");
-        req.setAttribute("user",user);
+        Page page = userService.listPage(pageNo, pageSize, Cnd.NEW().desc("create_time"));
+        getReq().setAttribute("p", page);
     }
 
     @At("/json")

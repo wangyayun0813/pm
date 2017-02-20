@@ -24,7 +24,7 @@
                     <!-- /tile header -->
 
                     <!-- tile body -->
-                    <div class="tile-body color transparent-white rounded-corners">
+                    <div class="tile-body rounded-corners">
 
                         <div class="table-responsive">
                             <div id="inlineEditDataTable_wrapper" class="dataTables_wrapper form-inline" role="grid">
@@ -33,50 +33,32 @@
                                     <thead>
                                     <tr role="row">
                                         <th>昵称</th>
-                                        <th>标识</th>
-                                        <th>操作对象</th>
-                                        <th>操作结果</th>
-                                        <th>操作时间</th>
+                                        <th>姓名</th>
+                                        <th>员工工号</th>
+                                        <th>最后登录时间</th>
+                                        <th>最后登录ip</th>
                                     </tr>
                                     </thead>
                                     <tbody role="alert" aria-live="polite" aria-relevant="all">
                                     <%
-                                    var logList = p.list;
-                                    for(log in logList){
+                                    var userList = p.list;
+                                    for(user in userList){
                                     %>
                                     <tr>
-                                        <td>${log.nick}</td>
-                                        <td>${log.tag}</td>
-                                        <td>${log.opObj}</td>
-                                        <td><%
-                                            if(log.opResult == 0){
-                                            print("成功");
-                                            }else{
-                                            print("失败");
-                                            }
-                                            %></td>
-                                        <td>${log.createTime,"yyyy-MM-dd HH:mm:ss"}</td>
+                                        <td>${user.nick}</td>
+                                        <td>${user.name}</td>
+                                        <td>${user.eId}</td>
+                                        <td>${user.lastTime,"yyyy-MM-dd HH:mm:ss"}</td>
+                                        <td>${user.lastIp}</td>
                                     </tr>
                                     <%}%>
                                     </tbody>
                                 </table>
-                                <div class="row">
-                                    <div class="col-md-4 sm-center">
-                                        <div class="dataTables_info" id="inlineEditDataTable_info">Showing 1 to 5 of 5
-                                            entries
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4"></div>
-                                    <div class="col-md-4 text-right sm-center">
-                                        <div class="dataTables_paginate paging_bootstrap paging_custombootstrap">
-                                            <ul class="pagination">
-                                                <li class="prev disabled"><a href="#">Previous</a></li>
-                                                <li class="active"><a href="#">1</a></li>
-                                                <li class="next disabled"><a href="#">Next</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                <b:page page="${p}" url="${base}/user">
+                                    <b:param name="name" value="张三"/>
+                                    <b:param name="age" value="21"/>
+                                    <b:param name="role" value="admin"/>
+                                </b:page>
                             </div>
                         </div>
                     </div>

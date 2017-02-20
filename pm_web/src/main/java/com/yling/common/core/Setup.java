@@ -53,6 +53,7 @@ public class Setup implements org.nutz.mvc.Setup
             m2.setPermission("user");
             m2.setType(SiteContants.MENU_TYPE_PAGE);
             m2.setDisabled(SiteContants.FLAG_YES);
+            m2.setIcon("fa fa-users");
             m2.setHref("/user");
 
             Menu m3 = new Menu();

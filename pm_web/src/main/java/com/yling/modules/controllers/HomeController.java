@@ -3,6 +3,9 @@ package com.yling.modules.controllers;
 import com.yling.common.base.BaseController;
 import com.yling.common.base.Result;
 import com.yling.common.page.Page;
+import com.yling.modules.models.User;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.nutz.dao.Cnd;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.annotation.At;
@@ -53,5 +56,14 @@ public class HomeController extends BaseController
     {
         Page page = sysLogService.listPage(pageNo, pageSize, Cnd.NEW().desc("create_time"));
         request.setAttribute("p",page);
+    }
+
+    @At("/user")
+    @Ok("beetl:sys/user.html")
+    public void userInfo()
+    {
+        Subject subject = SecurityUtils.getSubject();
+        User user = (User) subject.getPrincipal();
+        getReq().setAttribute("user", user);
     }
 }

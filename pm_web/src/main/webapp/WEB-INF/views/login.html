@@ -1,16 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:>
 <head>
-    <title>Minimal 1.0 - Login Page</title>
+    <title>账单管理系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
-
-    <link rel="icon" type="image/ico" href="${base!}/assets/images/favicon.ico" />
-    <!-- Bootstrap -->
-    <link href="${base!}/assets/css/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" href="${base!}/assets/css/vendor/bootstrap-checkbox.css">
-    <link href="${base!}/assets/css/minimal.css" rel="stylesheet">
+    <%include('/imports.html'){}%>
 </head>
 <body class="bg-3">
 
@@ -30,11 +24,11 @@
                 <form id="form-signin" class="form-signin" method="post" action="${base!}/login/doLogin">
                     <section>
                         <div class="input-group">
-                            <input type="text" class="form-control" name="username" placeholder="登录账号">
+                            <input type="text" class="form-control" name="username" data-rule="required;username;" placeholder="登录账号" value="${username!}">
                             <div class="input-group-addon"><i class="fa fa-user"></i></div>
                         </div>
                         <div class="input-group">
-                            <input type="password" class="form-control" name="password" placeholder="密码">
+                            <input type="password" class="form-control" name="password" data-rule="required;password;" placeholder="密码" value="${password!}">
                             <div class="input-group-addon"><i class="fa fa-key"></i></div>
                         </div>
                     </section>
@@ -47,7 +41,7 @@
                     </section>
                     <section class="log-in">
                         <button class="btn btn-greensea">登录</button>
-                        <span>-</span>${errorMsg!}
+                        <span>&nbsp;</span>
                         <a class="btn btn-slategray" href="${base!}/login/regist">注册</a>
                     </section>
                 </form>
@@ -56,6 +50,13 @@
         <!-- /Page content -->
     </div>
 </div>
+<script>
+    $(function () {
+        var errorMsg = '${errorMsg!}';
+        if(errorMsg && errorMsg!='')
+            Toast.error(errorMsg, '登录失败');
+    })
+</script>
 <!-- Wrap all page content end -->
 </body>
 </html>

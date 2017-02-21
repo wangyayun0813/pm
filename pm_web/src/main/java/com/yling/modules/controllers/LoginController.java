@@ -49,6 +49,7 @@ public class LoginController extends BaseController
         {
             subject.login(token);
             User user = (User) subject.getPrincipal();
+            getReq().getSession().setAttribute("user",user);
             SysLog log = SysLog.c(user.getId(), user.getNick(), "登录", "LoginController#doLogin", "", SiteContants.FLAG_YES);
             sysLogService.insert(log);
             org.nutz.dao.Chain chain = Chain.make("last_ip", StringUtil.getRemoteAddr())
@@ -58,10 +59,14 @@ public class LoginController extends BaseController
             return ">>:/sys/home";
         }catch (MyAuthenticationException e){
             getReq().setAttribute("errorMsg",e.getMessage());
+            getReq().setAttribute("username",token.getUsername());
+            getReq().setAttribute("password",token.getPassword());
             return "->:/login";
         }catch (AuthenticationException e)
         {
             getReq().setAttribute("errorMsg","密码错误！");
+            getReq().setAttribute("username",token.getUsername());
+            getReq().setAttribute("password",token.getPassword());
             return "->:/login";
         }catch (Exception e)
         {
@@ -81,6 +86,7 @@ public class LoginController extends BaseController
     {
         Subject subject = SecurityUtils.getSubject();
         User user = (User) subject.getPrincipal();
+        getReq().getSession().removeAttribute("user");
         SysLog log = SysLog.c(user.getId(), user.getNick(), "退出登录", "LoginController#logout", "", SiteContants.FLAG_YES);
         sysLogService.insert(log);
         subject.logout();

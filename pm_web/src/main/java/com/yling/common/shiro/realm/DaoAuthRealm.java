@@ -48,7 +48,7 @@ public class DaoAuthRealm extends AuthorizingRealm
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principal)
     {
-        User user = (User) principal;
+        User user = (User) principal.getPrimaryPrincipal();
         if (null != user)
         {
             SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();

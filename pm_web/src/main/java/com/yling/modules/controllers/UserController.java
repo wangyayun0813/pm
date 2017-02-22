@@ -5,6 +5,7 @@ import com.yling.common.base.BaseController;
 import com.yling.common.base.Result;
 import com.yling.common.page.Page;
 import com.yling.modules.models.User;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.nutz.dao.Cnd;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.annotation.At;
@@ -46,6 +47,17 @@ public class UserController extends BaseController
         result.append("[成功]操作2");
         result.append("[成功]操作3");
         result.append("[成功]操作4");
+        return result;
+    }
+
+    @At("/delete")
+    @RequiresPermissions("user.delete")
+    @SLog(tag = "删除用户")
+    public Result delete(@Param("userId") Long userId)
+    {
+        Result result = new Result();
+        result.append("删除成功！");
+        result.setDate(userId);
         return result;
     }
 }

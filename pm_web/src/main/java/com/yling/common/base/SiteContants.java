@@ -18,4 +18,9 @@ public class SiteContants
 
     public static final short MENU_TYPE_PAGE = 1;
     public static final short MENU_TYPE_OPERATION = 2;
+
+    /*状态*/
+    public static final short STATUS_TODO = 1;
+    public static final short STATUS_OK = 2;
+    public static final short STATUS_ERROR = 3;
 }

@@ -19,4 +19,10 @@ public class SysLogService extends BaseService<SysLog>
     {
         super(dao);
     }
+
+    public void save(Long userId,String nick,String tag,String obj,String info,Short opResult)
+    {
+        SysLog sysLog = SysLog.c(userId,nick,tag,obj,info,opResult);
+        insert(sysLog);
+    }
 }

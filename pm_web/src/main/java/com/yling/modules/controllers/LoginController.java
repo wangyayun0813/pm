@@ -7,10 +7,10 @@ import com.yling.common.shiro.exception.MyAuthenticationException;
 import com.yling.common.shiro.realm.CaptchaToken;
 import com.yling.common.util.DateUtil;
 import com.yling.common.util.StringUtil;
-import com.yling.modules.models.SysLog;
 import com.yling.modules.models.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.subject.Subject;
 import org.nutz.dao.Chain;
 import org.nutz.dao.Cnd;
@@ -50,8 +50,7 @@ public class LoginController extends BaseController
             subject.login(token);
             User user = (User) subject.getPrincipal();
             getReq().getSession().setAttribute("user",user);
-            SysLog log = SysLog.c(user.getId(), user.getNick(), "登录", "LoginController#doLogin", "", SiteContants.FLAG_YES);
-            sysLogService.insert(log);
+            sysLogService.save(user.getId(), user.getNick(), "登录", "LoginController#doLogin", "", SiteContants.FLAG_YES);
             org.nutz.dao.Chain chain = Chain.make("last_ip", StringUtil.getRemoteAddr())
                     .add("login_num", user.getLoginNum() != null ? user.getLoginNum() + 1 : 1)
                     .add("last_time", DateUtil.timestamp());
@@ -82,13 +81,13 @@ public class LoginController extends BaseController
 
     @At
     @Ok(">>:/login")
+    @RequiresAuthentication
     public void logout()
     {
         Subject subject = SecurityUtils.getSubject();
         User user = (User) subject.getPrincipal();
         getReq().getSession().removeAttribute("user");
-        SysLog log = SysLog.c(user.getId(), user.getNick(), "退出登录", "LoginController#logout", "", SiteContants.FLAG_YES);
-        sysLogService.insert(log);
+        sysLogService.save(user.getId(), user.getNick(), "退出登录", "LoginController#logout", "", SiteContants.FLAG_YES);
         subject.logout();
     }
 }

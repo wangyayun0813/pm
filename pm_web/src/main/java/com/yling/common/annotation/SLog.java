@@ -16,5 +16,7 @@ public @interface SLog
 {
     String tag();
 
-    String obj();
+    String obj() default "";
+
+    String info() default "";
 }

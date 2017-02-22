@@ -48,6 +48,7 @@ public class NutShiroProcessor extends AbstractProcessor
             try {
                 interceptor.assertAuthorized(new NutShiroInterceptor(ac));
             } catch (Exception e) {
+                e.printStackTrace();
                 whenException(ac, e);
                 return;
             }

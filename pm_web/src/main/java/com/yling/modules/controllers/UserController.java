@@ -5,8 +5,11 @@ import com.yling.common.base.BaseController;
 import com.yling.common.base.Result;
 import com.yling.common.page.Page;
 import com.yling.modules.models.User;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.nutz.dao.Cnd;
+import org.nutz.dao.Condition;
+import org.nutz.dao.util.cri.SqlExpressionGroup;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
@@ -27,10 +30,19 @@ public class UserController extends BaseController
 {
     @At("")
     @Ok("beetl:user/list.html")
-    public void index(HttpServletRequest req, @Param("pageNo")int pageNo,@Param("pageSize")int pageSize)
+    public void index(HttpServletRequest req, @Param("pageNo")int pageNo,@Param("pageSize")int pageSize,@Param("name") String name)
     {
-        Page page = userService.listPage(pageNo, pageSize, Cnd.NEW().desc("create_time"));
+        Condition cnd = Cnd.NEW();
+        if(!StringUtils.isEmpty(name))
+        {
+            SqlExpressionGroup g1 = Cnd.exps("name", "like", "%" + name + "%");
+            SqlExpressionGroup g2 = Cnd.exps("nick", "like", "%" + name + "%");
+            SqlExpressionGroup g3 = Cnd.exps("login_name", "like", "%" + name + "%");
+            cnd = Cnd.where(g1).or(g2).or(g3).desc("create_time");
+        }
+        Page page = userService.listPage(pageNo, pageSize, cnd);
         getReq().setAttribute("p", page);
+        getReq().setAttribute("name", name);
     }
 
     @At("/json")

@@ -9,6 +9,7 @@ var chain = {
             "org.nutz.mvc.impl.processor.ModuleProcessor",
             "org.nutz.mvc.impl.processor.ActionFiltersProcessor",
             "com.yling.common.processor.NutShiroProcessor",
+            "com.yling.common.processor.LogTimeProcessor",
             "org.nutz.mvc.impl.processor.AdaptorProcessor",
             "org.nutz.mvc.impl.processor.MethodInvokeProcessor",
             "org.nutz.mvc.impl.processor.ViewProcessor"

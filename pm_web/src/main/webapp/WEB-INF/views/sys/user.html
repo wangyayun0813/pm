@@ -1,120 +1,134 @@
 <%layout("/layout/common.html"){%>
 <!-- Page content -->
-<style>
-    .wrapper-content {
-        width: 100%;
-        height: 100%;
-        /*margin-left: 10px;*/
-        position: relative;
-        background: #f5f5f5;
-        background: -moz-linear-gradient(45deg, #f5f5f5 30px, #f5f5f5 30px), -moz-linear-gradient(0deg, transparent 30px, #f5f5f5 30px), -moz-linear-gradient(225deg, #f5f5f5 30px, #f5f5f5 30px), -moz-linear-gradient(315deg, transparent 30px, #f5f5f5 30px);
-        background: -o-linear-gradient(45deg, #f5f5f5 30px, #f5f5f5 30px), -o-linear-gradient(0deg, transparent 30px, #f5f5f5 30px), -o-linear-gradient(225deg, #f5f5f5 30px, #f5f5f5 30px), -o-linear-gradient(315deg, transparent 30px, #f5f5f5 30px);
-        background: -webkit-linear-gradient(45deg, #f5f5f5 30px, #f5f5f5 30px), -webkit-linear-gradient(0deg, transparent 30px, #f5f5f5 30px), -webkit-linear-gradient(225deg, #f5f5f5 30px, #f5f5f5 30px), -webkit-linear-gradient(315deg, transparent 30px, #f5f5f5 30px);
-        background-position: left bottom, right bottom, right top, left top; -moz-background-size:52% 52%; -webkit-background-size: 52% 52%; background-size:52% 52%; background-repeat: no-repeat; z-index: 1; padding:12px 0 40px 0 !important;
-    }
-
-    .wrapper-content:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        border-width: 0 42px 42px 0;
-        border-style: solid;
-        border-color: #ffffff rgba(0, 0, 0, 0.1);
-        -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0.4), 0 0 10px rgba(0, 0, 0, 0.3);
-        -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0.4), 0 0 10px rgba(0, 0, 0, 0.3);
-        box-shadow: 0 0 0 rgba(0, 0, 0, 0.4), 0 0 10px rgba(0, 0, 0, 0.3);
-        -webkit-transform: rotate(-90deg);
-        -moz-transform: rotate(-90deg);
-        -ms-transform: rotate(-90deg);
-        -o-transform: rotate(-90deg);
-        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-    }
-    .box-title{
-        width: 100%;
-        /*margin: 0 20px 0 50px;*/
-        border: none;
-        background: none;
-        border-radius: 4px 4px 0 0;
-        height: auto;
-        border-bottom: 1px solid #DDDDDD;
-        padding: 8px 20px 0 55px;
-        min-height: 55px;
-        margin-top: -10px;
-    }
-    .box-title h5{
-        color: #898989 !important;
-        font-size: 16px;
-        font-weight: normal;
-        text-transform: uppercase;
-        display: table;
-        width: 62%;
-        min-height: 55px;
-        float: left;
-    }
-    .box-title .title-crumbs{
-        float: right;
-        position: relative;
-    }
-    .box-content{
-        background: none;
-        padding: 15px 20px 20px 20px;
-        position: relative;
-    }
-
-    .box-content .panel-body {
-        background: #fff;
-        border-radius: 2px;
-        padding: 10px 20px;
-        position: relative;
-        min-height: 300px;
-        border: 10px solid #ebebeb;
-    }
-    a.search_high{
-        left: auto;
-        right: 56px;
-        position: absolute;
-        top: 6px;
-        z-index: 1012;
-        color: #666;
-        display: block;
-        width: 15px;
-    }
-</style>
-<div id="content">
-    <div class="wrapper-content">
-        <div class="box-title">
-            <h5><strong>用户设置</strong></h5>
-            <div class="title-crumbs">
+<div id="content" class="col-md-12">
+    <!-- page header -->
+    <div class="pageheader">
+        <h2>用户设置</h2>
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
                 <ol class="breadcrumb">
-                    <li><a href="${base!}/sys/home"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                    <li>首页</li>
                     <li class="active">用户设置</li>
                 </ol>
-            </div>
+            </ol>
         </div>
+    </div>
+    <!-- /page header -->
 
-        <div class="box-content col-xs-12">
-            <div class="panel-body">
-                <div class="cnd row m-b m-t-sm">
-                    <div class="col-md-8">
-                        <button type="button" class="btn btn-blue margin-bottom-20">Blue</button>
-                        <button type="button" class="btn btn-greensea margin-bottom-20">Greensea</button>
-                        <button type="button" class="btn btn-dutch margin-bottom-20">Dutch</button>
+
+    <!-- content main container -->
+    <div class="main">
+        <!-- row -->
+        <div class="row">
+            <!-- col 12 -->
+            <div class="col-md-12">
+                <!-- tile -->
+                <section class="tile color transparent-white">
+                    <!-- tile header -->
+                    <div class="tile-header">
+                        <h1><strong>用户信息</strong></h1>
                     </div>
-                    <div class="col-md-4">
-                        <div class="input-group">
-                            <input class="form-control" type="text">
-                            <a class="search_high"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
-                            <span class="input-group-btn search">
-                                <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-search" aria-hidden="true"></i>搜索</button>
-                            </span>
+                    <!-- /tile header -->
+
+                    <!-- tile body -->
+                    <div class="tile-body">
+                        <div class="form-horizontal">
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">姓名</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static">${user.name!}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group dot-line">
+                                <label class="col-sm-2 control-label">昵称</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static">${user.nick!}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group dot-line">
+                                <label class="col-sm-2 control-label">工号</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static">${user.eId!}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">年龄</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static">${user.age!}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">性别</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static">${user.sex!}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">生日</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static">${user.birthday!}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">邮箱</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static">${user.email!}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">QQ</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static">${user.qq!}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">手机</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static">${user.phoneNum!}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">地址</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static">${user.addr!}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">最后登录ip</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static">${user.lastIp!}</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">最后登录时间</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static">${user.lastTime!,'yyyy-MM-dd HH:mm:ss'}</p>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                </div>
+                    <!-- /tile body -->
+                </section>
+                <!-- /tile -->
             </div>
+            <!-- /col 6 -->
         </div>
-
+        <!-- /row -->
     </div>
+    <!-- /content container -->
 </div>
     <!-- Page content end -->
 <%}%>

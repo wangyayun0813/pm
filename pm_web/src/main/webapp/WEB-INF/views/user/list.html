@@ -6,7 +6,7 @@
         <div class="breadcrumbs">
             <ol class="breadcrumb">
                 <li>首页</li>
-                <li class="active">系统日志</li>
+                <li class="active">用户列表</li>
             </ol>
         </div>
     </div>
@@ -19,7 +19,7 @@
                 <section class="tile transparent">
                     <!-- tile header -->
                     <div class="tile-header transparent">
-                        <h1><strong>Inline Editing</strong> Datatable</h1>
+                        <h1><strong>用户列表</strong></h1>
                     </div>
                     <!-- /tile header -->
 
@@ -27,7 +27,24 @@
                     <div class="tile-body rounded-corners">
 
                         <div class="table-responsive">
-                            <div id="inlineEditDataTable_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                            <div class="dataTables_wrapper form-inline" role="grid">
+                                <div class="row">
+                                    <form class="form-inline" method="post" action="${base!}/user">
+                                    <div class="col-md-8">
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group pull-right">
+                                            <div class="input-group">
+                                                <input type="text" name="name" value="${name!}" class="form-control" placeholder="昵称/姓名/登录名">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
                                 <table class="table table-datatable table-custom dataTable" id="inlineEditDataTable"
                                        aria-describedby="inlineEditDataTable_info">
                                     <thead>
@@ -35,8 +52,11 @@
                                         <th>昵称</th>
                                         <th>姓名</th>
                                         <th>员工工号</th>
+                                        <th>登录名</th>
+                                        <th>登录次数</th>
                                         <th>最后登录时间</th>
                                         <th>最后登录ip</th>
+                                        <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody role="alert" aria-live="polite" aria-relevant="all">
@@ -48,8 +68,25 @@
                                         <td>${user.nick}</td>
                                         <td>${user.name}</td>
                                         <td>${user.eId}</td>
+                                        <td>${user.loginName}</td>
+                                        <td>${user.loginNum}次</td>
                                         <td>${user.lastTime,"yyyy-MM-dd HH:mm:ss"}</td>
                                         <td>${user.lastIp}</td>
+                                        <td>
+                                            <div class="btn-group margin-bottom-20">
+                                                <button type="button" class="btn btn-default dropdown-toggle"
+                                                        data-toggle="dropdown">
+                                                    操作<span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="#">修改</a></li>
+                                                    <li><a>修改角色</a></li>
+                                                    <li><a href="#">重置密码</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">删除</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <%}%>
                                     </tbody>

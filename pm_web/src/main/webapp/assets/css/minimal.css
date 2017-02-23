@@ -17531,3 +17531,7 @@ body #content.full-page.error .search input:-ms-input-placeholder {
         top: 10px;
     }
 }
+
+.main .row{
+    margin-right: 0px;
+}
